@@ -21,9 +21,9 @@ $(document).ready(function () {
         
         opspark.player.init(game);
         
-        const textOpts = { fontSize: '32px', fill: '#000' };
-        game.score = game.add.text(16, 16, 'Score: 0', textOpts);
-        game.lives = game.add.text(16, 70, 'Lives: ' + lives, textOpts);
+        const textOpts = { fontSize: '32px', fill: '#fff' };
+        game.score = game.add.text(16, 16, 'Score : 0', textOpts);
+        game.lives = game.add.text(16, 70, 'Lives <3 : ' + lives, textOpts);
     }
 
 
@@ -54,7 +54,7 @@ $(document).ready(function () {
             lives--;
             game.lives.text = 'Lives ' + lives;            
         } else {
-            setTimeout(() => game.lives.text = "Game Over: Refresh Your Browser to Play Again", 500);
+            setTimeout(() => game.lives.text = "Game Over: Refresh Your Browser & Play Again :D ", 500);
         } 
     }
 
