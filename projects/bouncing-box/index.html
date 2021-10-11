@@ -8,17 +8,22 @@
 		.box {
 			width: 70px;
 			height: 70px;
-			background-color: teal;
-			font-size: 300%;
+			background-color: rgb(238, 178, 178);
+			font-size: 200%;
 			text-align: center;
 			display: block;
 			position: absolute;
 			top: 100px;
 			left: 0px;  /* <--- Change me! */
+			user-select: none;
+			-ms-user-select:none; 
 		}
 		.board{
 			height: 100vh;
 		}
+		.text { user-select: none;
+			-ms-user-select:none; }
+		
 	</style>
 	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
 
@@ -47,9 +52,11 @@
 			box.on('click', handleBoxClick);
 
 			// moves the Box to a new position on the screen along the X-Axis
-			function moveBoxTo(newPositionX) {
-				box.css("left", newPositionX);
-			}
+			function moveBoxTo(newPositionX, newPositionY) {
+             box.css('left', newPositionX);
+              box.css('top', newPositionY);
+             }
+			
 
 			// changes the text displayed on the Box
 			function changeBoxText(newText) {
@@ -61,6 +68,14 @@
 			//////////////////////////////////////////////////////////////////
 			
 			// TODO 2 - Variable declarations 
+			var positionX = 0;
+			var points = 0;
+			var speed = 10;
+			
+			var positionY = 0;
+			var speedY = 10;
+			var boardHeight = jQuery(window).height(); 
+			
 			
 
 			
@@ -69,7 +84,20 @@
 			it should move the Box to a new location. If the box drifts off the screen
 			turn it around! 
 			*/
-			function update() {
+			function update() { 
+				positionX = positionX + speed 
+				positionY = positionY + speedY 
+				
+				moveBoxTo(positionX, positionY)
+				if (positionX > boardWidth) { speed = -speed ;
+				}
+				if (positionX < 0) { speed = -speed ;
+				}
+				
+				if (positionY > 1) { speedY = -speedY ;
+				}
+				if (positionY < boardHeight) { speedY = -speedY ;
+				}
 				
 
 			};
@@ -80,6 +108,17 @@
 			the left side of the screen.
 			*/
 			function handleBoxClick() {
+				
+				
+				positionX = 0;
+			    positionY = 0;
+				points = points + 1;
+
+				changeBoxText(points);
+
+				speed = speed + 3;
+
+				speedY = speedY + 3;
 				
 
 
