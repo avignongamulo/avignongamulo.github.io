@@ -15,8 +15,18 @@
 			position: absolute;
 			top: 100px;
 			left: 0px;  /* <--- Change me! */
+
 			user-select: none;
-			-ms-user-select:none; 
+			-webkit-user-select: none; 
+     		-khtml-user-select: none;
+       		-moz-user-select: none; 
+        	-ms-user-select: none; 
+         
+			-webkit-user-drag: none;
+			-khtml-user-drag: none;
+			-moz-user-drag: none;
+			-o-user-drag: none;
+
 			border: 9px rgb(243, 165, 165) solid; 
 			border-radius: 30px;
 		}
@@ -25,19 +35,34 @@
 			background-color: rgb(240, 149, 149);
 		}
 		.text { user-select: none;
-			-ms-user-select:none; }
+			-webkit-user-select: none; 
+    		 -khtml-user-select: none;
+       		-moz-user-select: none; 
+        	-ms-user-select: none; 
+         
+			-webkit-user-drag: none;
+			-khtml-user-drag: none;
+			-moz-user-drag: none;
+			-o-user-drag: none;
+    	 }
 		img {
 			position: fixed; 
-  top: -50%; 
-  left: -50%; 
-  width: 200%; 
-  height: 200%;
-  -webkit-user-drag: none;
--khtml-user-drag: none;
--moz-user-drag: none;
--o-user-drag: none;
-user-drag: none;
-		
+  			top: -50%; 
+ 			left: -50%; 
+  			width: 200%; 
+  			height: 200%;
+			
+  			-webkit-user-drag: none;
+			-khtml-user-drag: none;
+			-moz-user-drag: none;
+			-o-user-drag: none;
+			user-select: none;
+			-webkit-user-select: none; 
+     		-khtml-user-select: none;
+       		-moz-user-select: none; 
+       		-ms-user-select: none; 
+            user-select: none; 
+			
           border-radius: 30px;
           border: 9px rgb(243, 165, 165) solid; 
 		}
