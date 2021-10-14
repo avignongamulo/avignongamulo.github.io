@@ -6,8 +6,8 @@
 	<script src="jquery.min.js"></script>
 	<style>
 		.box {
-			width: 70px;
-			height: 70px;
+			width: 80px;
+			height: 80px;
 			background-color: rgb(238, 178, 178);
 			font-size: 200%;
 			text-align: center;
@@ -17,18 +17,31 @@
 			left: 0px;  /* <--- Change me! */
 			user-select: none;
 			-ms-user-select:none; 
+			border: 9px rgb(243, 165, 165) solid; 
+			border-radius: 30px;
 		}
 		.board{
 			height: 100vh;
+			background-color: rgb(240, 149, 149);
 		}
 		.text { user-select: none;
 			-ms-user-select:none; }
+		img {
+			position: fixed; 
+  top: -50; 
+  left: -50%; 
+  width: 200%; 
+  height: 200%;
 		
+          border-radius: 30px;
+          border: 9px rgb(243, 165, 165) solid; 
+		}
 	</style>
 	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
 
 </head>
 <body class="board">
+	<img src="https://cdn.discordapp.com/attachments/834958735150415912/891828522291695626/miasbeigepink.png"
 	<!-- HTML for the box -->
 	<div class="box">?</div>
 
@@ -94,7 +107,7 @@
 				if (positionX < 0) { speed = -speed ;
 				}
 				
-				if (positionY > 1) { speedY = -speedY ;
+				if (positionY > 0) { speedY = -speedY ;
 				}
 				if (positionY < boardHeight) { speedY = -speedY ;
 				}
