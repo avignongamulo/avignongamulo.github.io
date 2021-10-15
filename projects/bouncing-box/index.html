@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<title>Bouncing Box</title>
@@ -14,92 +15,98 @@
 			display: block;
 			position: absolute;
 			top: 100px;
-			left: 0px;  /* <--- Change me! */
+			left: 0px;
+			/* <--- Change me! */
 
 			user-select: none;
-			-webkit-user-select: none; 
-     		-khtml-user-select: none;
-       		-moz-user-select: none; 
-        	-ms-user-select: none; 
-         
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+
 			-webkit-user-drag: none;
 			-khtml-user-drag: none;
 			-moz-user-drag: none;
 			-o-user-drag: none;
 
-			border: 9px rgb(243, 165, 165) solid; 
+			border: 9px rgb(243, 165, 165) solid;
 			border-radius: 30px;
 		}
-		.board{
+
+		.board {
 			height: 100vh;
 			background-color: rgb(240, 149, 149);
 		}
-		.text { user-select: none;
-			-webkit-user-select: none; 
-    		 -khtml-user-select: none;
-       		-moz-user-select: none; 
-        	-ms-user-select: none; 
-         
+
+		.text {
+			user-select: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+
 			-webkit-user-drag: none;
 			-khtml-user-drag: none;
 			-moz-user-drag: none;
 			-o-user-drag: none;
-    	 }
+		}
+
 		img {
-			position: fixed; 
-  			top: -50%; 
- 			left: -50%; 
-  			width: 200%; 
-  			height: 200%;
-			
-  			-webkit-user-drag: none;
+			position: fixed;
+			top: -50%;
+			left: -50%;
+			width: 200%;
+			height: 200%;
+
+			-webkit-user-drag: none;
 			-khtml-user-drag: none;
 			-moz-user-drag: none;
 			-o-user-drag: none;
 			user-select: none;
-			-webkit-user-select: none; 
-     		-khtml-user-select: none;
-       		-moz-user-select: none; 
-       		-ms-user-select: none; 
-            user-select: none; 
-			
-          border-radius: 30px;
-          border: 9px rgb(243, 165, 165) solid; 
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+
+			border-radius: 30px;
+			border: 9px rgb(243, 165, 165) solid;
 		}
 	</style>
 	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
 
 </head>
+
 <body class="board">
-	<img src="https://cdn.discordapp.com/attachments/834958735150415912/891828522291695626/miasbeigepink.png"
-	<!-- HTML for the box -->
+	<img src="https://cdn.discordapp.com/attachments/834958735150415912/891828522291695626/miasbeigepink.png" <!-- HTML
+		for the box -->
 	<div class="box">?</div>
 
 	<script>
-		(function(){
+		(function () {
 			'use strict'
 			/* global jQuery */
 
 			//////////////////////////////////////////////////////////////////
 			/////////////////// SETUP DO NOT DELETE //////////////////////////
 			//////////////////////////////////////////////////////////////////
-			
+
 			var box = jQuery('.box');	// reference to the HTML .box element
 			var board = jQuery('.board');	// reference to the HTML .board element
 			var boardWidth = board.width();	// the maximum X-Coordinate of the screen
 
 			// Every 50 milliseconds, call the update Function (see below)
 			setInterval(update, 50);
-			
+
 			// Every time the box is clicked, call the handleBoxClick Function (see below)
 			box.on('click', handleBoxClick);
 
 			// moves the Box to a new position on the screen along the X-Axis
 			function moveBoxTo(newPositionX, newPositionY) {
-             box.css('left', newPositionX);
-              box.css('top', newPositionY);
-             }
-			
+				box.css('left', newPositionX);
+				box.css('top', newPositionY);
+			}
+
 
 			// changes the text displayed on the Box
 			function changeBoxText(newText) {
@@ -109,39 +116,43 @@
 			//////////////////////////////////////////////////////////////////
 			/////////////////// YOUR CODE BELOW HERE /////////////////////////
 			//////////////////////////////////////////////////////////////////
-			
+
 			// TODO 2 - Variable declarations 
 			var positionX = 0;
 			var points = 0;
 			var speed = 10;
-			
+
 			var positionY = 0;
 			var speedY = 10;
-			var boardHeight = jQuery(window).height(); 
-			
-			
+			var boardHeight = jQuery(window).height();
 
-			
+
+
+
 			/* 
 			This Function will be called 20 times/second. Each time it is called,
 			it should move the Box to a new location. If the box drifts off the screen
 			turn it around! 
 			*/
-			function update() { 
-				positionX = positionX + speed 
-				positionY = positionY + speedY 
-				
+			function update() {
+				positionX = positionX + speed
+				positionY = positionY + speedY
+
 				moveBoxTo(positionX, positionY)
-				if (positionX > boardWidth) { speed = -speed ;
+				if (positionX > boardWidth) {
+					speed = -speed;
 				}
-				if (positionX < 0) { speed = -speed ;
+				if (positionX < 0) {
+					speed = -speed;
 				}
-				
-				if (positionY > 0) { speedY = -speedY ;
+
+				if (positionY > 0) {
+					speedY = -speedY;
 				}
-				if (positionY < boardHeight) { speedY = -speedY ;
+				if (positionY < boardHeight) {
+					speedY = -speedY;
 				}
-				
+
 
 			};
 
@@ -151,10 +162,10 @@
 			the left side of the screen.
 			*/
 			function handleBoxClick() {
-				
-				
+
+
 				positionX = 0;
-			    positionY = 0;
+				positionY = 0;
 				points = points + 1;
 
 				changeBoxText(points);
@@ -162,11 +173,12 @@
 				speed = speed + 3;
 
 				speedY = speedY + 3;
-				
+
 
 
 			};
 		})();
 	</script>
 </body>
+
 </html>
