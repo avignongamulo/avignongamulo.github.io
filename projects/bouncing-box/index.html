@@ -170,9 +170,19 @@
 
 				changeBoxText(points);
 
-				speed = speed + 3;
+				if (speed < 0){
+					speed = speed - 3;
+				}
+				if (speed > 0){
+					speed = speed + 3;
+				}
 
-				speedY = speedY + 3;
+				if (speedY < 0){
+					speedY = speedY - 3;
+				}
+				if (speedY > 0){
+					speedY = speedY + 3;
+				}
 
 
 
