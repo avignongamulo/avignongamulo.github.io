@@ -34,7 +34,7 @@ var init = function (window) {
         }
 
         // TODO 3 / 8 : Call the drawCircle() function 
-       for (var i=0; i<=5; i++){
+       for (var i=0; i<=100; i++){
         drawCircle();
        }
         
@@ -73,6 +73,8 @@ var init = function (window) {
         game.checkCirclePosition = function (circle) {
 
             // if the circle has gone past the RIGHT side of the screen then place it on the LEFT
+        
+           
             if (circle.x > canvas.width) {
                 circle.x = 0;
             }
@@ -81,10 +83,12 @@ var init = function (window) {
             if (circle.y > canvas.height) {
                 circle.y = 0;
             }
-            if (circle.x > canvas.width) {
-                circle.x = 0;
+            if (circle.x < 0) {
+                circle.x = canvas.width;
             }
-
+            if (circle.y < 0) {
+                circle.y = canvas.height;
+            }
 
             // YOUR TODO 7 CODE ENDS HERE //////////////////////////
         }
