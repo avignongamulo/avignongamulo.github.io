@@ -19,14 +19,14 @@ function applyFilter() {
 
     for (var r = 0; r < image.length; r++) {
 
-        for (var c = 0; c < image[i].length; c++) {
+        for (var c = 0; c < image[r].length; c++) {
             rgbString = image[r][c];
 
             var rgbNumbers = rgbStringToArray(rgbString);
             rgbNumbers[RED] = 255;
 
-            rgbString = rgbArrayToString(rgbNumbers);
-            rgbString = image[r][c];
+            rgbArrayToString(rgbNumbers) = rgbString;
+            image[r][c] = rgbString;
         }
 
     }
