@@ -1,12 +1,12 @@
 // This is a small program. There are only two sections. This first section is what runs
 // as soon as the page loads and is where you should call your functions.
-$(document).ready(function () {
+$(document).ready(function() {
     const $display = $('#display');
 
     // Multiple TODOs: Call your apply function(s) here
-    applyFilter(reddify)
-    applyFilter(decreaseBlue)
-    applyFilter(increaseGreenByBlue)
+    applyFilter(reddify(rgbNumbers))
+    applyFilter(decreaseBlue(rgbNumbers))
+    applyFilter(increaseGreenByBlue(rgbNumbers))
     render($display, image);
 });
 
@@ -64,16 +64,16 @@ function keepInBounds(number) {
 
 // TODO 3: Create reddify function
 function reddify(array) {
-    rgbNumbers[RED] = 200;
+    array[RED] = 200;
 }
 
 // TODO 6: Create more filter functions
 function decreaseBlue(array) {
-    rgbNumbers[BLUE] = keepInBounds(rgbNumbers[BLUE] - 50);
+    array[BLUE] = keepInBounds(array[BLUE] - 50);
 }
 
 function increaseGreenByBlue(array) {
-    rgbNumbers[GREEN] = keepInBounds(rgbNumbers[BLUE] + rgbNumbers[GREEN]);
+    array[GREEN] = keepInBounds(array[BLUE] + array[GREEN]);
 }
 
 // CHALLENGE code goes below here
