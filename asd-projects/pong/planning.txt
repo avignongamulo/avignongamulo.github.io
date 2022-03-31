@@ -1,0 +1,72 @@
+User Story / Gameplay
+
+Describe the gameplay:
+Pong is a two player game where each user controls a paddle that moves vertically.
+Their goal is to hit the other players wall, that theyre defending, with a ball to score a point.
+The ball bounces back and forth from each paddle, the top wall, and the bottom wall.
+
+
+What are the conditions when the game begins? 
+The ball starts moving and randomly and players start with zero points.
+
+Does the game have an end? If so, what are the conditions for when it ends?
+The game ends when whichever player reaches 11 points first. That player then wins the game.
+
+What ifs will there be?
+if the ball hits the top and bottom wall , let it bounce 
+if the ball hits the left and right wall , add a point and reset the ball
+if the score reaches 11 , announce who won and make a reset game button appear
+if the ball hits the paddles , make them bounceback 
+if you use the top and bottom arrow keys and the w and s keys , let the paddles move up and down
+
+Visual Game Components:
+
+What are the visual game components? For example, in Bouncing Box, the game components were the
+board and the box.
+The paddles, the ball, the board, the scoreboard.
+
+Which will be static? (the board) the board will be static (does the scoreboard count too? or
+does it not count because it has to change numbers...)
+
+Which will be animated? (the box) The ball and paddles will be animated.
+
+What data will you need to manage each game component? For example, in Bouncing Box, the data 
+values were positionX, speedX, and points.
+ball = speedX speedY positionX positionY  
+paddles = speedX speedY positionX positionY
+board = boardWidth boardHeight
+scoreboard = pointsPlayer1 pointsPlayer2
+
+
+
+Events / Logic
+
+What events will occur in this game? (timer events, keyboard events, clicking events?)
+start game button
+reset game button 
+w & s for paddle 1 , up and down arrow keys for paddle 2
+scoring
+game end (max score)
+
+How do those events affect the data of the program?
+start game will allow the ball to start to move . 
+reset game will affect the data of the ball, paddles, and scoreboard
+the keyboard events will affect the data of the paddles
+scoring will affect the data of the scoreboard
+game end will affect the same things as reset game
+
+For each "event", write out the high-level logic of what will happen. It is better (and tricky) 
+to be as specific as you can while remaining high-level!
+
+if i click the reset game button , the ball, paddles, and scoreboard will reset to their default
+positions. 
+if i click the start game button in the middle of the screen , the ball will start to 
+move randomly in a random direction.
+if i press the W key , the left paddle will move up a little
+if i press the up arrow key , the right paddle will move up a little 
+if i press the down arrow key , the right paddle will move down a little 
+if i press the s key , the left paddle will move down a little
+if the ball hits the left wall , player two recieves an additional point. 
+if the ball hits the right wall , player one recieves an additional point.
+if the score reaches 11 , a clickable reset game button will appear
+if i click the reset game button , the start game button will reappear.
