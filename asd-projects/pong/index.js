@@ -13,6 +13,7 @@ function runProgram() {
   const FRAMES_PER_SECOND_INTERVAL = 1000 / FRAME_RATE;
    var BOARD_WIDTH = $('#board').width();
    var BOARD_HEIGHT = $('#board').height();
+    var BORDER_RADIUS = parseFloat($('#board').css("border-radius")); 
 
   var ARROWKEY = {
     "LEFT": 37,
@@ -25,10 +26,8 @@ function runProgram() {
     "D": 68
   }
 
-   var positionX = 0;
-   var positionY = 0;
-   var speedX = 0;
-   var speedY = 0;
+   
+  
 
   // Game Item Objects
   var ball = factory("#ball");
@@ -36,11 +35,16 @@ function runProgram() {
   var player2Paddle = factory("#player2Paddle");
   var player1Score = factory("#player1Score");
   var player2Score = factory("#player2Score");
+  var startButton 
 
   // one-time setup
   let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
   $(document).on('keydown', handleKeyDown);                           // change 'eventType' to the type of event you want to handle
   $(document).on("keyup", handleKeyUp);
+  $(document).on('keydown', handleKeyDown2);                           
+  $(document).on("keyup", handleKeyUp2);
+
+  startBall();
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -51,57 +55,56 @@ function runProgram() {
   */
   function newFrame() {
     // update position of the game item
-    repositionPaddle();
-   
+    repositionPaddle1();
+    repositionPaddle2();
     // check for collisions
-    checkForBorderCollisions();
-  
-
+    checkForBorderCollisions(player1Paddle);
+    checkForBorderCollisions(player2Paddle);
   }
 
-}
+
 
 /* 
 Called in response to events.
 */
 function handleKeyDown(event) {
   // press up key ---> accelerate box in negative y
-  changeSpeedY(-5, event.which, ARROWKEY.UP)
 
-  changeSpeedY(-5, event.which, ARROWKEY.W)
+
+  changeSpeedY1(-15, event.which, ARROWKEY.W)
 
   // press down key ---> accelerate box in positive y
-  changeSpeedY(5, event.which, ARROWKEY.DOWN)
 
-  changeSpeedY(5, event.which, ARROWKEY.S)
 
-  // press left key ---> accelerate box in negative x 
-  changeSpeedX(-5, event.which, ARROWKEY.LEFT)
-
-  changeSpeedX(-5, event.which, ARROWKEY.A)
-
-  // press right key ---> accelerate box in positive x
-  changeSpeedX(5, event.which, ARROWKEY.RIGHT)
-
-  changeSpeedX(5, event.which, ARROWKEY.D)
+  changeSpeedY1(15, event.which, ARROWKEY.S)
 
 
 }
 
 function handleKeyUp(event) {
 
-  changeSpeedY(0, event.which, ARROWKEY.UP)
-  changeSpeedY(0, event.which, ARROWKEY.W)
+  
+  changeSpeedY1(0, event.which, ARROWKEY.W)
 
-  changeSpeedY(0, event.which, ARROWKEY.DOWN)
-  changeSpeedY(0, event.which, ARROWKEY.S)
+  
+  changeSpeedY1(0, event.which, ARROWKEY.S)
 
-  changeSpeedX(0, event.which, ARROWKEY.LEFT)
-  changeSpeedX(0, event.which, ARROWKEY.A)
+ 
 
-  changeSpeedX(0, event.which, ARROWKEY.RIGHT)
-  changeSpeedX(0, event.which, ARROWKEY.D)
 
+}
+
+function handleKeyDown2(event){
+  changeSpeedY2(-15, event.which, ARROWKEY.UP)
+  changeSpeedY2(15, event.which, ARROWKEY.DOWN)
+
+
+}
+
+function handleKeyUp2(event){
+  changeSpeedY2(0, event.which, ARROWKEY.UP)
+  changeSpeedY2(0, event.which, ARROWKEY.DOWN)
+  
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -146,41 +149,62 @@ function doCollide(square1, square2) {
 
 
 
-function repositionPaddle() {
-  positionX += speedX;
-  $("#player1Paddle").css("left", positionX);
+function repositionPaddle1() {
+  player1Paddle.x += player1Paddle.speedX;
 
-  positionY += speedY;
-  $("#player1Paddle").css("top", positionY);
+  $(player1Paddle.id).css("left", player1Paddle.x);
+
+  player1Paddle.y += player1Paddle.speedY;
+
+  $(player1Paddle.id).css("top", player1Paddle.y);
+}
+function repositionPaddle2() {
+  player2Paddle.x += player2Paddle.speedX;
+
+  $(player2Paddle.id).css("left", player2Paddle.x);
+
+  player2Paddle.y += player2Paddle.speedY;
+
+  $(player2Paddle.id).css("top", player2Paddle.y);
 }
 
 
-function changeSpeedY(newSpeed, keycode, arrowKey) {
+function changeSpeedY1(newSpeed, keycode, arrowKey) {
   if (keycode === arrowKey) {
-    speedY = newSpeed;
+    player1Paddle.speedY = newSpeed;
   }
 }
-
-function changeSpeedX(newSpeed, keycode, arrowKey) {
+function changeSpeedY2(newSpeed, keycode, arrowKey) {
   if (keycode === arrowKey) {
-    speedX = newSpeed;
+    player2Paddle.speedY = newSpeed;
   }
 }
 
 
-function checkForBorderCollisions() {
-  if (positionX > BOARD_WIDTH - $("#player1Paddle").width()) {
-    positionX = BOARD_WIDTH - $("#player1Paddle").width();
+
+function checkForBorderCollisions(gameItem) {
+  if (gameItem.x > BOARD_WIDTH - gameItem.width) {
+    gameItem.x = BOARD_WIDTH - gameItem.width;
   }
-  else if (positionX < 0) {
-    positionX = 0;
+  else if (gameItem.x < 0) {
+    gameItem.x = 0;
   }
-  if (positionY > BOARD_HEIGHT - $("#player1Paddle").height()) {
-    positionY = BOARD_HEIGHT - $("#player1Paddle").height()
+  if (gameItem.y > BOARD_HEIGHT - gameItem.height - BORDER_RADIUS/2) {
+    gameItem.y = BOARD_HEIGHT - gameItem.height - BORDER_RADIUS/2;
   }
-  else if (positionY < 0) {
-    positionY = 0;
+  else if (gameItem.y < 0) {
+    gameItem.y = 0;
   }
+}
+
+function startBall() {
+ball.x = parseFloat($(ball.id).css('left', 286));
+ball.y = parseFloat($(ball.id).css('top', 145));
+ball.speedX = 0;
+ball.speedY = 0;
+
+
+
 }
 
 
