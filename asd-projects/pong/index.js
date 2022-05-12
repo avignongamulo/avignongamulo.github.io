@@ -26,7 +26,7 @@ function runProgram() {
     "D": 68
   }
 
-var randomNum = (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1);
+
 
 
   // Game Item Objects
@@ -44,7 +44,7 @@ var randomNum = (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1);
   $(document).on('keydown', handleKeyDown2);
   $(document).on("keyup", handleKeyUp2);
   
-  startBall();
+ startBall();
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -59,7 +59,7 @@ var randomNum = (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1);
     repositionPaddle2();
     repositionBall();
     
-    startBall();
+    
     // check for collisions
     checkForBorderCollisions(player1Paddle);
     checkForBorderCollisions(player2Paddle);
@@ -220,17 +220,45 @@ var randomNum = (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1);
   }
 
   function startBall() {
-    ball.x = parseFloat($(ball.id).css('left', 286));
-    ball.y = parseFloat($(ball.id).css('top', 145));
+    var randomNum = (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1);
+
+    $(ball.id).css('left', 286);
+    $(ball.id).css('top', 145);
+
+    ball.x = parseFloat($(ball.id).css('left'));
+    ball.y = parseFloat($(ball.id).css('top'));
+
     ball.speedX = randomNum;
     ball.speedY = randomNum;
 
 
 
   }
+  
+  function moveBallTo(newPositionX, newPositionY) {
+    $(ball.id).css('left', newPositionX);
+    $(ball.id).css('top', newPositionY);
+  }
 
  function repositionBall(){
-   
+  ball.x = ball.x + ball.speedX
+  ball.y = ball.y + ball.speedY
+
+  moveBallTo(ball.x, ball.y)
+  if (ball.x > BOARD_WIDTH) {
+    ball.speedX = -ball.speedX;
+  }
+  if (ball.x < 0) {
+    ball.speedX = -ball.speedX;
+  }
+
+  if (ball.y >= 0) {
+    ball.speedY = -ball.speedY;
+  }
+  if (ball.y < BOARD_HEIGHT) {
+    ball.speedY = -ball.speedY;
+  }
+
  }
 
 
