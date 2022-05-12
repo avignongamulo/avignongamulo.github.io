@@ -12,20 +12,6 @@ body {
   position: relative;
 }
 
-#startButton {
-  /* appearance */
-  background-color: rgb(243, 165, 165);
-  width: 70px;
-  height: 30px;
-  border: 5px solid rgb(252, 250, 172);
-  border-radius: 10px;
-
-    /* positioning */
-    position: absolute;
-    top: 145px;
-    left: 257px;
-}
-
 
 #player1Paddle {
   /* appearance */
